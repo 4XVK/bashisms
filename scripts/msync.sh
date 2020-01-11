@@ -1,6 +1,3 @@
-#
-# Extract maven artifacts and sync them to a remote destination
-#
 function msync {
 
     POMS=()
