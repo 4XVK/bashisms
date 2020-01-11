@@ -78,18 +78,3 @@ function msync {
     fi
 
 }
-
-# call the function
-msync $@
-
-# example output
-
-# ./msync.sh -p ~/Documents/workspace/example1 -p ~/Documents/workspace/example2/test.xml -r /tmp/foo -r user@server:/tmp/baz -d
-# Creating artifact directory /var/folders/f8/qf2kgv9d68v6qr2ktd4ffqn80000gp/T/tmp.ctxS22PV
-# Using POM file ~/Documents/workspace/example1/pom.xml
-# Generated artifact example1-1.2.3-SNAPSHOT20200109065014.noarch.rpm
-# Using POM file ~/Documents/workspace/example2/test.xml
-# Generated artifact example2-1.2.3-SNAPSHOT20200109065017.noarch.rpm
-# Syncing artifact directory with /tmp/foo
-# Syncing artifact directory with user@server:/tmp/baz
-# Deleting artifact directory
