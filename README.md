@@ -28,6 +28,8 @@ This is one example meant for simplicity, these functions can be included howeve
 All of these scripts are formatted into functions so they may be easily added to a `.bashrc` or something similar
 
 * [msync.sh](scripts/msync.sh) - Extract maven artifacts and sync them to a remote destination
+* [socks.sh](scripts/socks.sh) - Start an SSH SOCKS proxy to a remote desination
+* [dsocks.sh](scripts/dsocks.sh) - Start a double SSH SOCKS proxy from one remote host through another
 
 ## License
 
