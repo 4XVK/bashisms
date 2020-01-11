@@ -13,7 +13,7 @@ function msync {
             -h|--help) # help text
             echo "Extract maven artifacts and sync them to a remote destination"
             echo ""
-            echo "Usage: $(basename $0) [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ..."
+            echo "Usage: ${FUNCNAME[0]} [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ..."
             echo ""
             echo "-h|--help\tdisplay help text and exit"
             echo "-f|--delete\tdelete artifact directory upon completion"
