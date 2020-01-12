@@ -2,7 +2,7 @@
 
 A curated assortement of useful scripts and bash functions for the average developer
 
-## Requrements
+## Requirements
 
 All non standard dependencies are listed for each script within the [scripts](#Scripts) section
 
@@ -43,7 +43,7 @@ All of these scripts are formatted into functions so they may be easily added to
 * [msync.sh](scripts/msync.sh) - Extract maven artifacts and sync them to a remote destination
     * Requirements - [maven](https://maven.apache.org/install.html)
 * [wsync.sh](scripts/wsync.sh) - Watch for changes and sync a local folder to a remote desination
-    * Requirements - [inotifytools](https://github.com/rvoicilas/inotify-tools/wiki#getting)(Linux), [fswatch](https://github.com/emcrisostomo/fswatch#getting-fswatch)(MacOS)
+    * Requirements - [inotifytools](https://github.com/rvoicilas/inotify-tools/wiki#getting) (Linux), [fswatch](https://github.com/emcrisostomo/fswatch#getting-fswatch) (MacOS)
 * [socks.sh](scripts/socks.sh) - Start an SSH SOCKS proxy to a remote desination
 * [dsocks.sh](scripts/dsocks.sh) - Start a double SSH SOCKS proxy from one remote host through another
 
