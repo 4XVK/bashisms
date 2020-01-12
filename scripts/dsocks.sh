@@ -1,3 +1,4 @@
+# Version: v0.1.0
 function dsocks {
 
     # private help text function

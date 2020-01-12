@@ -1,3 +1,4 @@
+# Version: v0.1.0
 function socks {
 
     # private help text function

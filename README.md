@@ -2,6 +2,14 @@
 
 A curated assortement of useful scripts and bash functions for the average developer
 
+## Versioning
+
+Some scripts may be untested and will be versioned as alpha until then (Example: `0.x.y`)
+
+Versions of each script are given above the function header in the corresponding script files
+
+Versions are also available within the [scripts](#Scripts) section
+
 ## Requirements
 
 All non standard dependencies are listed for each script within the [scripts](#Scripts) section
@@ -56,12 +64,12 @@ Usage:  [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ...
 
 All of these scripts are formatted into functions so they may be easily added to a `.bashrc` or something similar
 
-* [msync.sh](scripts/msync.sh) - Extract maven artifacts and sync them to a remote destination
+* [msync.sh](scripts/msync.sh) (`v0.1.0`) - Extract maven artifacts and sync them to a remote destination
     * Requirements - [maven](https://maven.apache.org/install.html)
-* [wsync.sh](scripts/wsync.sh) - Watch for changes and sync a local folder to a remote desination
+* [wsync.sh](scripts/wsync.sh) (`v0.1.0`) - Watch for changes and sync a local folder to a remote desination
     * Requirements - [inotifytools](https://github.com/rvoicilas/inotify-tools/wiki#getting) (Linux), [fswatch](https://github.com/emcrisostomo/fswatch#getting-fswatch) (MacOS)
-* [socks.sh](scripts/socks.sh) - Start an SSH SOCKS proxy to a remote desination
-* [dsocks.sh](scripts/dsocks.sh) - Start a double SSH SOCKS proxy from one remote host through another
+* [socks.sh](scripts/socks.sh) (`v0.1.0`) - Start an SSH SOCKS proxy to a remote desination
+* [dsocks.sh](scripts/dsocks.sh) (`v0.1.0`) - Start a double SSH SOCKS proxy from one remote host through another
 
 ## License
 
