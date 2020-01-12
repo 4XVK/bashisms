@@ -36,6 +36,22 @@ for f in $(find ~/.bashisms/scripts -type f); do source $f; done
 
 This is one example meant for simplicity, these functions can be included however you prefer
 
+## Usage
+
+If installed using the methods above, these functions can be referenced as bash functions on the command line
+
+```
+> msync --help
+Extract maven artifacts and sync them to a remote destination
+
+Usage:  [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ...
+
+-h|--help	display help text and exit
+-f|--delete	delete artifact directory upon completion
+-p|--pom	pom file or directory containing a pom.xml
+-r|--remote	remote destination leveraging rsync format
+```
+
 ## Scripts
 
 All of these scripts are formatted into functions so they may be easily added to a `.bashrc` or something similar
