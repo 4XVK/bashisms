@@ -30,7 +30,7 @@ function wsync {
     # rules for all other systems
     else
         # watch for changes and continually sync
-        inotifywait -r -m $1 |while read $f; do
+        inotifywait -r -m $1 | while read $f; do
             echo "Changes detected, resyncing"
             /usr/bin/rsync -qaz $1 $2 --delete --no-motd
         done
