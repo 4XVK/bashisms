@@ -1,20 +1,20 @@
 function dsocks {
 
     # process arguments
-    while (( "$#" )); do
+    while (( $# )); do
         case "$1" in
             -h|--help) # help text
             echo "Start a double SSH SOCKS proxy from one remote host through another"
             echo ""
             echo "Usage: ${FUNCNAME[0]} <host1> <host1_ssh_port> <host2> <host2_ssh_port> <socks_port>"
             echo ""
-            echo "-h|--help\tdisplay help text and exit"
-            echo "<host1>\first remote host to connect to"
-            echo "<host1_ssh_port>\first remote host ssh port"
-            echo "<host2>\second remote host to connect to"
-            echo "<host2_ssh_port>\second remote host ssh port"
-            echo "<socks_port>\local socks port to expose"
-            exit 0
+            echo "-h|--help\t\tdisplay help text and exit"
+            echo "<host1>\t\t\tfirst remote host to connect to"
+            echo "<host1_ssh_port>\tfirst remote host ssh port"
+            echo "<host2>\t\t\tsecond remote host to connect to"
+            echo "<host2_ssh_port>\tsecond remote host ssh port"
+            echo "<socks_port>\t\tlocal socks port to expose"
+            return 0
             ;;
         esac
     done

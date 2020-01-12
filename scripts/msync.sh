@@ -5,7 +5,7 @@ function msync {
     DELETE=false
 
     # process arguments
-    while (( "$#" )); do
+    while (( $# )); do
         case "$1" in
             -h|--help) # help text
             echo "Extract maven artifacts and sync them to a remote destination"
@@ -16,7 +16,7 @@ function msync {
             echo "-f|--delete\tdelete artifact directory upon completion"
             echo "-p|--pom\tpom file or directory containing a pom.xml"
             echo "-r|--remote\tremote destination leveraging rsync format"
-            exit 0
+            return 0
             ;;
             -p|--pom) # pom files
             POMS+=( "$2" )
@@ -36,7 +36,7 @@ function msync {
             ;;
             -*|--*=) # unsupported flags
             echo "Error: Unsupported flag $1" >&2
-            exit 1
+            return 1
             ;;
             *) # preserve positional arguments
             shift
