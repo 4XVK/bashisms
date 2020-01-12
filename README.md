@@ -38,7 +38,7 @@ This is one example meant for simplicity, these functions can be included howeve
 
 ## Usage
 
-If installed using the methods above, these functions can be referenced as bash functions on the command line
+If installed using the methods above, these functions can be referenced as functions on the command line
 
 ```
 > msync --help
