@@ -52,12 +52,12 @@ If installed using the methods above, these functions can be referenced as funct
 > msync --help
 Extract maven artifacts and sync them to a remote destination
 
-Usage:  [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ...
+Usage: _help [-h|--help] [-d|--delete] <-p|--pom $arg> ... [-r|--remote $arg] ...
 
--h|--help	display help text and exit
--f|--delete	delete artifact directory upon completion
--p|--pom	pom file or directory containing a pom.xml
--r|--remote	remote destination leveraging rsync format
+-h|--help       display help text and exit
+-f|--delete     delete artifact directory upon completion
+-p|--pom        pom file or directory containing a pom.xml
+-r|--remote     remote destination leveraging rsync format
 ```
 
 ## Scripts
