@@ -6,7 +6,7 @@ function socks {
             -h|--help) # help text
             echo "Start an SSH SOCKS proxy to a remote desination"
             echo ""
-            echo "Usage: ${FUNCNAME[0]} <host> <host_ssh_port> <socks_port>"
+            echo "Usage: $(basename ${0}) <host> <host_ssh_port> <socks_port>"
             echo ""
             echo "-h|--help\tdisplay help text and exit"
             echo "<host>\t\tremote host to connect to"

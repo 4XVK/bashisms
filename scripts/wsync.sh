@@ -6,7 +6,7 @@ function wsync {
             -h|--help) # help text
             echo "Watch for changes and sync a local folder to a remote desination"
             echo ""
-            echo "Usage: ${FUNCNAME[0]} <folder> <remote>"
+            echo "Usage: $(basename ${0}) <folder> <remote>"
             echo ""
             echo "-h|--help\tdisplay help text and exit"
             echo "<folder>\local folder to sync"
@@ -30,7 +30,7 @@ function wsync {
     # rules for all other systems
     else
         # watch for changes and continually sync
-        while inotifywait -r -m $1 | while read $f; do
+        inotifywait -r -m $1 |while read $f; do
             echo "Changes detected, resyncing"
             /usr/bin/rsync -qaz $1 $2 --delete --no-motd
         done

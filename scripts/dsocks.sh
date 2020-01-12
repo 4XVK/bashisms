@@ -6,7 +6,7 @@ function dsocks {
             -h|--help) # help text
             echo "Start a double SSH SOCKS proxy from one remote host through another"
             echo ""
-            echo "Usage: ${FUNCNAME[0]} <host1> <host1_ssh_port> <host2> <host2_ssh_port> <socks_port>"
+            echo "Usage: $(basename ${0}) <host1> <host1_ssh_port> <host2> <host2_ssh_port> <socks_port>"
             echo ""
             echo "-h|--help\t\tdisplay help text and exit"
             echo "<host1>\t\t\tfirst remote host to connect to"
