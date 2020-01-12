@@ -1,5 +1,17 @@
 function msync {
 
+    # private help text function
+    function _help {
+            echo "Extract maven artifacts and sync them to a remote destination"
+            echo ""
+            echo "Usage: $(basename ${0}) [-h|--help] [-d|--delete] <-p|--pom \$arg> ... [-r|--remote \$arg] ..."
+            echo ""
+            echo "-h|--help\tdisplay help text and exit"
+            echo "-f|--delete\tdelete artifact directory upon completion"
+            echo "-p|--pom\tpom file or directory containing a pom.xml"
+            echo "-r|--remote\tremote destination leveraging rsync format"
+    }
+
     POMS=()
     REMOTES=()
     DELETE=false
@@ -8,15 +20,7 @@ function msync {
     while (( $# )); do
         case "$1" in
             -h|--help) # help text
-            echo "Extract maven artifacts and sync them to a remote destination"
-            echo ""
-            echo "Usage: $(basename ${0}) [-h|--help] [-d|--delete] [-p|--pom <arg>] ... [-r|--remote <arg>] ..."
-            echo ""
-            echo "-h|--help\tdisplay help text and exit"
-            echo "-f|--delete\tdelete artifact directory upon completion"
-            echo "-p|--pom\tpom file or directory containing a pom.xml"
-            echo "-r|--remote\tremote destination leveraging rsync format"
-            return 0
+            _help; return 0
             ;;
             -p|--pom) # pom files
             POMS+=( "$2" )
@@ -44,6 +48,9 @@ function msync {
         esac
     done
 
+    # check for all required arguments
+    if [ ${#POMS[@]} -eq 0 ]; then _help 1>&2; return 1; fi
+
     # creat the artifact directory
     tmpdir=$(mktemp -d)
     echo "Creating artifact directory ${tmpdir}"
@@ -52,7 +59,7 @@ function msync {
         # set pom to ${pom}/pom.xml if folder was passed
         test -f "${pom}/pom.xml" && { pom="${pom}/pom.xml"; }
         test -f ${pom} || { echo "Error: Unable to find POM file ${pom}" >&2; continue; }
-        echo "Using POM file ${pom}"
+        echo "Generating artifacts for ${pom}"
         # generate maven artifacts based on current pom file
         artifacts=($(mvn -f "${pom}" clean package | grep --line-buffered Wrote: | awk '{print $3}' | tr "\n" "\n"))
         for artifact in $artifacts; do
