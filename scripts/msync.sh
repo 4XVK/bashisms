@@ -73,7 +73,7 @@ function msync {
     for remote in ${REMOTES[@]}; do
         # sync artifact directory with remote destinations
         echo "Syncing artifact directory with ${remote}"
-        rsync -a $tmpdir/ $remote
+        rsync -qaz $tmpdir/ $remote
     done
 
     if [ "${DELETE}" = true ]; then
