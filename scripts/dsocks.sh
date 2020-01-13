@@ -8,7 +8,7 @@ function dsocks {
     function _help {
         echo "Start a double SSH SOCKS proxy from one remote host through another"
         echo ""
-        echo "Usage: $BASENAME <-a|--host-a \$arg> <-p|--host-port-a \$arg> <-b|--host-b \$arg> <-o|--host-port-b \$arg> <-s|--socks-port \$arg>"
+        echo "Usage: $BASENAME [-h|--help] <-a|--host-a \$arg> <-p|--host-port-a \$arg> <-b|--host-b \$arg> <-o|--host-port-b \$arg> <-s|--socks-port \$arg>"
         echo ""
         echo "-h|--help\t\tdisplay help text and exit"
         echo "-a|--host-a\t\tfirst remote host to connect to"
