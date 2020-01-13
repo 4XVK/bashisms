@@ -1,11 +1,13 @@
-# Version: v0.1.0
+# Version: v0.2.0
 function msync {
+
+    BASENAME=$(basename ${0})
 
     # private help text function
     function _help {
             echo "Extract maven artifacts and sync them to a remote destination"
             echo ""
-            echo "Usage: $(basename ${0}) [-h|--help] [-d|--delete] <-p|--pom \$arg> ... [-r|--remote \$arg] ..."
+            echo "Usage: $BASENAME [-h|--help] [-d|--delete] <-p|--pom \$arg> ... [-r|--remote \$arg] ..."
             echo ""
             echo "-h|--help\tdisplay help text and exit"
             echo "-f|--delete\tdelete artifact directory upon completion"

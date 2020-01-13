@@ -1,11 +1,13 @@
-# Version: v0.1.0
+# Version: v0.2.0
 function dsocks {
+
+    BASENAME=$(basename ${0})
 
     # private help text function
     function _help {
         echo "Start a double SSH SOCKS proxy from one remote host through another"
         echo ""
-        echo "Usage: $(basename ${0}) <-a|--host-a \$arg> <-p|--host-port-a \$arg> <-b|--host-b \$arg> <-o|--host-port-b \$arg> <-s|--socks-port \$arg>"
+        echo "Usage: $BASENAME <-a|--host-a \$arg> <-p|--host-port-a \$arg> <-b|--host-b \$arg> <-o|--host-port-b \$arg> <-s|--socks-port \$arg>"
         echo ""
         echo "-h|--help\t\tdisplay help text and exit"
         echo "-a|--host-a\t\tfirst remote host to connect to"

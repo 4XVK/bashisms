@@ -1,11 +1,13 @@
-# Version: v0.1.0
+# Version: v0.2.0
 function socks {
+
+    BASENAME=$(basename ${0})
 
     # private help text function
     function _help {
         echo "Start an SSH SOCKS proxy to a remote desination"
         echo ""
-        echo "Usage: $(basename ${0}) [-h|--help] <-r|--remote \$arg> <-p|--ssh-port \$arg> <-s|--socks-port \$arg>"
+        echo "Usage: $BASENAME [-h|--help] <-r|--remote \$arg> <-p|--ssh-port \$arg> <-s|--socks-port \$arg>"
         echo ""
         echo "-h|--help\tdisplay help text and exit"
         echo "-r|--remote\tremote host to connect to"

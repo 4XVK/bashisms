@@ -1,11 +1,13 @@
-# Version: v0.1.0
+# Version: v0.2.0
 function wsync {
+
+    BASENAME=$(basename ${0})
 
     # private help text function
     function _help {
         echo "Watch for changes and sync a local folder to a remote desination"
         echo ""
-        echo "Usage: $(basename ${0}) <-f|--folder \$arg> <-r|--remote \$arg>"
+        echo "Usage: $BASENAME <-f|--folder \$arg> <-r|--remote \$arg>"
         echo ""
         echo "-h|--help\tdisplay help text and exit"
         echo "-f|--folder\tlocal folder to sync"
