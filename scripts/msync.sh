@@ -1,23 +1,27 @@
 # Version: v0.2.0
 function msync {
 
+    # function base name
     BASENAME=$(basename ${0})
 
     # private help text function
     function _help {
             echo "Extract maven artifacts and sync them to a remote destination"
             echo ""
-            echo "Usage: $BASENAME [-h|--help] [-d|--delete] <-p|--pom \$arg> ... [-r|--remote \$arg] ..."
+            echo "Usage: $BASENAME [-h|--help] [-d|--delete] [-n|--no-clean] <-p|--pom \$arg> ... [-r|--remote \$arg] ..."
             echo ""
             echo "-h|--help\tdisplay help text and exit"
-            echo "-f|--delete\tdelete artifact directory upon completion"
+            echo "-d|--delete\tdelete artifact directory upon completion"
+            echo "-n|--no-clean\tdo not clean maven artifact target directories"
             echo "-p|--pom\tpom file or directory containing a pom.xml"
             echo "-r|--remote\tremote destination leveraging rsync format"
     }
 
+    # starting variables
     POMS=()
     REMOTES=()
     DELETE=false
+    NOCLEAN=false
 
     # process arguments
     while (( $# )); do
@@ -35,6 +39,10 @@ function msync {
             ;;
             -d|--delete) # delete artifact directory
             DELETE=true
+            shift 1
+            ;;
+            -n|--no-clean) # maven no clean flag
+            NOCLEAN=true
             shift 1
             ;;
             --) # end argument parsing
@@ -62,9 +70,16 @@ function msync {
         # set pom to ${pom}/pom.xml if folder was passed
         test -f "${pom}/pom.xml" && { pom="${pom}/pom.xml"; }
         test -f ${pom} || { echo "Error: Unable to find POM file ${pom}" >&2; continue; }
-        echo "Generating artifacts for ${pom}"
-        # generate maven artifacts based on current pom file
-        artifacts=($(mvn -f "${pom}" clean package | grep --line-buffered Wrote: | awk '{print $3}' | tr "\n" "\n"))
+        # optional maven artifact cleaning flag
+        if [ "${NOCLEAN}" = true ]; then
+            # generate maven artifacts based on current pom file without cleaning
+            echo "Generating artifacts for ${pom} without target cleaning"
+            artifacts=($(mvn -f "${pom}" package | grep --line-buffered Wrote: | awk '{print $3}' | tr "\n" "\n"))
+        else
+            # generate maven artifacts based on current pom file
+            echo "Generating artifacts for ${pom} with target cleaning"
+            artifacts=($(mvn -f "${pom}" clean package | grep --line-buffered Wrote: | awk '{print $3}' | tr "\n" "\n"))
+        fi
         for artifact in $artifacts; do
             # copy generated artifacts to artifact directory
             echo "Generated artifact ${artifact##*/}"

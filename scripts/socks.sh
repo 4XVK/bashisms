@@ -1,6 +1,7 @@
 # Version: v0.2.0
 function socks {
 
+    # function base name
     BASENAME=$(basename ${0})
 
     # private help text function
