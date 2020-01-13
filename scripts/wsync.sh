@@ -6,12 +6,12 @@ function wsync {
 
     # private help text function
     function _help {
-        echo "Watch for changes and sync a local folder to a remote desination"
+        echo "Watch for changes and sync a location to a remote desination"
         echo ""
-        echo "Usage: $BASENAME <-f|--folder \$arg> <-r|--remote \$arg>"
+        echo "Usage: $BASENAME <-l|--location \$arg> <-r|--remote \$arg>"
         echo ""
         echo "-h|--help\tdisplay help text and exit"
-        echo "-f|--folder\tlocal folder to sync"
+        echo "-l|--location\tfile or folder to sync"
         echo "-r|--remote\tremote destination leveraging rsync format"
     }
 
@@ -21,8 +21,8 @@ function wsync {
             -h|--help) # help text
             _help; return 0
             ;;
-            -f|--folder) # folder
-            FOLDER=$2
+            -l|--location) # folder
+            LOCATION=$2
             shift 2
             ;;
             -r|--remote) # remote
@@ -44,25 +44,25 @@ function wsync {
     done
 
     # check for all required arguments
-    if [ -z "$FOLDER" ] || [ -z "$REMOTE" ]; then _help 1>&2; return 1; fi
+    if [ -z "$LOCATION" ] || [ -z "$REMOTE" ]; then _help 1>&2; return 1; fi
 
     # initial sync
     echo "Syncing changes from $1 to $2"
-    /usr/bin/rsync -qaz $1 $2 --delete --no-motd
+    /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
 
     # rules for macos systems
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # watch for changes and continually sync
         fswatch -o $1 | while read; do
-            echo "Changes detected, resyncing"
-            /usr/bin/rsync -qaz $1 $2 --delete --no-motd
+            echo "Changes detected on $1"
+            /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
         done
     # rules for all other systems
     else
         # watch for changes and continually sync
         inotifywait -r -m $1 | while read; do
-            echo "Changes detected, resyncing"
-            /usr/bin/rsync -qaz $1 $2 --delete --no-motd
+            echo "Changes detected on $1"
+            /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
         done
     fi
 }

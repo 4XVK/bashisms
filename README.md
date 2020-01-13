@@ -66,7 +66,9 @@ All of these scripts are formatted into functions so they may be easily added to
 
 * [msync.sh](scripts/msync.sh) (`v0.2.0`) - Extract maven artifacts and sync them to a remote destination
     * Requirements - [maven](https://maven.apache.org/install.html)
-* [wsync.sh](scripts/wsync.sh) (`v0.2.0`) - Watch for changes and sync a local folder to a remote desination
+* [wsync.sh](scripts/wsync.sh) (`v0.2.0`) - Watch for changes and sync a location to a remote desination
+    * Requirements - [inotifytools](https://github.com/rvoicilas/inotify-tools/wiki#getting) (Linux), [fswatch](https://github.com/emcrisostomo/fswatch#getting-fswatch) (MacOS)
+* [wexec.sh](scripts/wexec.sh) (`v0.1.0`) - Watch for changes on a location and optionally execute commands
     * Requirements - [inotifytools](https://github.com/rvoicilas/inotify-tools/wiki#getting) (Linux), [fswatch](https://github.com/emcrisostomo/fswatch#getting-fswatch) (MacOS)
 * [socks.sh](scripts/socks.sh) (`v0.2.0`) - Start an SSH SOCKS proxy to a remote desination
 * [dsocks.sh](scripts/dsocks.sh) (`v0.2.0`) - Start a double SSH SOCKS proxy from one remote host through another
