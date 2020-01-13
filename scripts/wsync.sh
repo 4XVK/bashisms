@@ -11,7 +11,7 @@ function wsync {
         echo "Usage: $BASENAME [-h|--help] [-n|--no-delete] <-l|--location \$arg> <-r|--remote \$arg>"
         echo ""
         echo "-h|--help\tdisplay help text and exit"
-        echo "-n|--no-delete\tdo not delete mismatching contect"
+        echo "-n|--no-delete\tdo not delete mismatching content"
         echo "-l|--location\tfile or folder to sync"
         echo "-r|--remote\tremote destination leveraging rsync format"
     }
@@ -53,42 +53,33 @@ function wsync {
     # check for all required arguments
     if [ -z "$LOCATION" ] || [ -z "$REMOTE" ]; then _help 1>&2; return 1; fi
 
+    # sync helper function
+    function _sync {
+        if [ "${NODELETE}" = true ]; then
+            echo "Syncing changes from $1 to $2 without deletion"
+            /usr/bin/rsync -qaz $LOCATION $REMOTE --no-motd
+        else
+            echo "Syncing changes from $1 to $2 with deletion"
+            /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
+        fi
+    }
+
     # initial sync
-    if [ "${NODELETE}" = true ]; then
-        echo "Syncing changes from $1 to $2 without deletion"
-        /usr/bin/rsync -qaz $LOCATION $REMOTE --no-motd
-    else
-        echo "Syncing changes from $1 to $2 with deletion"
-        /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
-    fi
+    _sync
 
     # rules for macos systems
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # watch for changes and continually sync
         fswatch -o $1 | while read; do
             echo "Changes detected on $1"
-            # sync content
-            if [ "${NODELETE}" = true ]; then
-                echo "Syncing changes from $1 to $2 without deletion"
-                /usr/bin/rsync -qaz $LOCATION $REMOTE --no-motd
-            else
-                echo "Syncing changes from $1 to $2 with deletion"
-                /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
-            fi
+            _sync
         done
     # rules for all other systems
     else
         # watch for changes and continually sync
         inotifywait -r -m $1 | while read; do
             echo "Changes detected on $1"
-            # sync content
-            if [ "${NODELETE}" = true ]; then
-                echo "Syncing changes from $1 to $2 without deletion"
-                /usr/bin/rsync -qaz $LOCATION $REMOTE --no-motd
-            else
-                echo "Syncing changes from $1 to $2 with deletion"
-                /usr/bin/rsync -qaz $LOCATION $REMOTE --delete --no-motd
-            fi
+            _sync
         done
     fi
 }
